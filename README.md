@@ -1,110 +1,108 @@
-# Banner adaptable
+# AdSara: banner adaptable anclado
 
-Aplicación Flutter de ejemplo con un banner adaptable anclado al borde inferior
-de la pantalla. El tamaño se calcula con el ancho disponible y se vuelve a
-solicitar cuando cambia la orientación o el tamaño de la ventana.
+## Presentación
 
-## Ejecutar
+**Tipo de anuncio:** banner adaptable anclado (*large anchored adaptive
+banner*).
+
+Este formato muestra un anuncio rectangular fijo en el borde inferior de la
+app. Google Mobile Ads calcula un tamaño adecuado según el ancho disponible y
+la orientación del dispositivo. En esta demostración, el banner aparece en la
+pantalla principal de AdSara cuando termina de cargar.
+
+**Tecnologías:** Flutter, Dart y Google Mobile Ads Flutter Plugin.
+
+## Referencias
+
+- [Banners adaptables en Flutter](https://developers.google.com/admob/flutter/banner?hl=es)
+- [Inicio rápido de Google Mobile Ads para Flutter](https://developers.google.com/admob/flutter/quick-start?hl=es)
+- [Crear una cuenta de AdMob](https://support.google.com/admob/answer/7356219?hl=es)
+- [Configurar una aplicación en AdMob](https://support.google.com/admob/answer/9989980?hl=es)
+- [Buscar el ID de aplicación o de bloque de anuncios](https://support.google.com/admob/answer/7356431?hl=es)
+
+## Demostración
+
+**Capturas solicitadas:** agregar aquí capturas reales de AdSara ejecutándose
+en un emulador o teléfono, incluyendo una donde se vea el banner de prueba.
+Guárdalas en `docs/images/` y luego insértalas, por ejemplo:
+
+```markdown
+![AdSara con el banner adaptable visible](docs/images/adsara-banner.png)
+```
+
+Las capturas todavía están pendientes: no hay imágenes de la demostración
+guardadas en este repositorio. Usa un anuncio de prueba de Google y no pulses
+anuncios reales.
+
+## Clonar el repositorio
+
+```bash
+git clone https://github.com/sarch28/banner_adaptable.git
+cd banner_adaptable
+```
+
+El repositorio debe estar creado en GitHub y tener publicado el proyecto para
+que otras personas puedan clonarlo. Si es privado, el usuario necesitará
+permisos de acceso.
+
+## Requisitos
+
+- Flutter instalado y disponible en `PATH`.
+- Android Studio y Android SDK configurados para ejecutar en Android.
+- Un emulador Android iniciado o un teléfono conectado por USB con depuración
+  USB habilitada y autorizado desde el dispositivo.
+- Conexión a Internet para descargar dependencias y solicitar el anuncio de
+  prueba.
+
+Comprueba el entorno y los dispositivos disponibles:
+
+```bash
+flutter doctor
+flutter devices
+```
+
+## Ejecutar en emulador o dispositivo Android
+
+Desde la carpeta del proyecto, descarga las dependencias:
 
 ```bash
 flutter pub get
-flutter run
 ```
 
-## Crear una cuenta de AdMob y obtener los IDs
+Inicia la aplicación en el emulador o teléfono que aparezca en `flutter
+devices`, sustituyendo `<ID_DEL_DISPOSITIVO>` por el ID mostrado:
 
-1. **Crear la cuenta.** Entra en [AdMob](https://admob.google.com/) con una
-   cuenta de Google y sigue el registro. Selecciona con cuidado tu país o
-   territorio, ya que no podrás cambiarlo después. Acepta los términos y
-   completa la verificación telefónica si se solicita. Para verificar la
-   cuenta, Google también puede pedirte datos de pago e identidad.
+```bash
+flutter run -d <ID_DEL_DISPOSITIVO>
+```
 
-2. **Añadir cada plataforma como una aplicación.** En AdMob, abre
-   **Aplicaciones > Añadir aplicación**, elige Android o iOS e indica si la app
-   ya está publicada en una tienda admitida. Si aún no está publicada, puedes
-   añadirla como aplicación sin publicar para hacer pruebas; vincúlala a la
-   tienda cuando la publiques. AdMob puede limitar la publicación de anuncios
-   hasta revisar y aprobar la aplicación. Android e iOS tienen registros e IDs
-   de aplicación diferentes.
+También puedes usar `flutter run` si solo hay un dispositivo conectado.
+Cuando Android lo solicite, desbloquea el teléfono y autoriza la depuración o
+instalación por USB. Para cerrar la ejecución desde la terminal, pulsa `q` o
+`Ctrl+C`.
 
-3. **Copiar el ID de aplicación.** En AdMob, abre **Aplicaciones**, selecciona
-   la app y copia su **ID de aplicación**. Tiene un formato parecido a
-   `ca-app-pub-XXXXXXXXXXXXXXXX~YYYYYYYYYY`. Configúralo en
-   `android/app/src/main/AndroidManifest.xml` y/o `ios/Runner/Info.plist`,
-   según la plataforma.
+## Configuración de anuncios de prueba
 
-4. **Crear un bloque de anuncios de banner.** Dentro de la aplicación en
-   AdMob, abre **Bloques de anuncios > Añadir bloque de anuncios**, selecciona
-   **Banner**, asigna un nombre y crea el bloque. Copia el **ID del bloque de
-   anuncios**, con un formato parecido a
-   `ca-app-pub-XXXXXXXXXXXXXXXX/YYYYYYYYYY`. Crea y usa el bloque de la
-   plataforma correspondiente; el tamaño adaptable se determina en el código
-   Flutter, no al crear este bloque.
+Android usa el ID de aplicación de AdSara en
+`android/app/src/main/AndroidManifest.xml`. El bloque de banner configurado en
+`lib/main.dart` es el ID de prueba oficial de Google para Android:
+`ca-app-pub-3940256099942544/6300978111`. iOS también conserva IDs de prueba.
+Así se puede demostrar la integración sin solicitar anuncios reales; el banner
+requiere conexión a Internet para cargar.
 
-5. **Reemplazar los IDs de prueba.** En `main.dart`, sustituye los IDs de
-   bloque de prueba por los IDs de banner de Android e iOS. Sustituye también
-   los IDs de aplicación de prueba en el manifiesto Android y en `Info.plist`
-   por los IDs que generó AdMob para cada aplicación. Mantén los IDs de prueba
-   durante el desarrollo y no hagas clic en anuncios reales.
+La cuenta de AdMob de AdSara aún puede estar pendiente de aprobación. Antes de
+publicar, confirma el estado de la cuenta y la aplicación en AdMob y reemplaza
+los IDs de prueba por los IDs de producción correspondientes. Nunca pulses tus
+propios anuncios reales durante el desarrollo.
 
-Consulta las guías oficiales: [registrarse en
-AdMob](https://support.google.com/admob/answer/7356219?hl=es),
-[configurar una aplicación](https://support.google.com/admob/answer/9989980?hl=es),
-[buscar y copiar IDs](https://support.google.com/admob/answer/7356431?hl=es)
-y [configurar banners adaptables en Flutter](https://developers.google.com/admob/flutter/banner?hl=es).
+## Detalles de la implementación
 
-## Pasos de implementación
-
-1. **Agregar el SDK de Google Mobile Ads.** La dependencia
-   `google_mobile_ads` está declarada en `pubspec.yaml`. Para agregarla a otro
-   proyecto, ejecuta:
-
-   ```bash
-   flutter pub add google_mobile_ads
-   ```
-
-2. **Inicializar el SDK.** En `main.dart`, inicializa Flutter y Google Mobile
-   Ads antes de ejecutar la aplicación. La inicialización se limita a Android e
-   iOS:
-
-   ```dart
-   WidgetsFlutterBinding.ensureInitialized();
-   await MobileAds.instance.initialize();
-   ```
-
-3. **Configurar el identificador de aplicación de AdMob.** Agrega el
-   identificador de aplicación de Android a
-   `android/app/src/main/AndroidManifest.xml` y el de iOS a
-   `ios/Runner/Info.plist`. Este proyecto ya tiene los identificadores de
-   prueba oficiales de Google configurados en ambos archivos.
-
-4. **Calcular el tamaño adaptable.** Obtén el ancho disponible en píxeles
-   lógicos con `MediaQuery.sizeOf(context).width.truncate()` y solicita el
-   tamaño adaptable anclado con
-   `AdSize.getLargeAnchoredAdaptiveBannerAdSize(width)`. Si no se obtiene un
-   tamaño, no se crea el anuncio.
-
-5. **Crear y cargar el banner.** Crea un `BannerAd` con el tamaño calculado,
-   el identificador de unidad correspondiente a la plataforma, una solicitud
-   `AdRequest` y un `BannerAdListener`. El listener muestra el anuncio cuando
-   carga y registra el error si falla.
-
-6. **Mostrarlo anclado y liberar sus recursos.** Una vez cargado, inserta el
-   `AdWidget` en `Scaffold.bottomNavigationBar`, envuelto en `SafeArea` y un
-   `SizedBox` con las dimensiones del anuncio. Llama a `dispose()` cuando el
-   anuncio deja de usarse o se destruye la pantalla.
-
-7. **Actualizar el tamaño ante cambios de ventana.** Vuelve a solicitar el
-   tamaño cuando cambie el ancho disponible, por ejemplo, al rotar el
-   dispositivo. Descarta el anuncio anterior y evita aplicar resultados de
-   solicitudes que ya no correspondan al ancho actual.
-
-## Identificadores y pruebas
-
-La aplicación usa identificadores de prueba de Google Mobile Ads para Android
-e iOS. No uses anuncios reales durante el desarrollo. Antes de publicar,
-reemplaza los identificadores de aplicación y de unidad de anuncio por los de
-tu cuenta de AdMob.
-
-El banner se muestra cuando termina de cargar. Si la carga falla, el error se
-registra en la consola y la pantalla continúa funcionando sin el anuncio.
+1. Se agrega el paquete `google_mobile_ads`.
+2. Se inicializa Google Mobile Ads al iniciar la app en Android o iOS.
+3. Se obtiene el ancho disponible y se solicita el tamaño adaptable anclado
+   con `AdSize.getLargeAnchoredAdaptiveBannerAdSize`.
+4. Se crea y carga el `BannerAd`; el listener registra errores y actualiza la
+   interfaz al cargar.
+5. Se muestra el anuncio en `Scaffold.bottomNavigationBar`, dentro de
+   `SafeArea` y `SizedBox`, y se libera con `dispose()`.
+6. Se solicita un tamaño nuevo cuando cambia el ancho de la pantalla.

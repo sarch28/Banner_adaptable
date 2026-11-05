@@ -22,12 +22,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Banner adaptable',
+      title: 'AdSara',
       theme: ThemeData(
         colorScheme: .fromSeed(seedColor: Colors.deepPurple),
       ),
       home: MyHomePage(
-        title: 'Banner adaptable',
+        title: 'AdSara',
         showBanner: showBanner,
       ),
     );
